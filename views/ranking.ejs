@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Professor Rankings</title>
+    <style>
+        /* Add styles to control the size of the professor images */
+        .small-professor-image {
+            width: 50px; /* Adjust width to desired size */
+            height: 50px; /* Adjust height to desired size */
+            object-fit: cover; /* Ensures the image fits within the box without stretching */
+            border-radius: 50%; /* Makes the image circular */
+            margin-right: 10px; /* Adds space between image and text */
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .ranking-table th, .ranking-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .ranking-table th {
+            background-color: #f2f2f2;
+        }
+
+        .professor-info {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Vote</a></li>
+                <li><a href="/ranking">Rankings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Professor Rankings</h1>
+
+    <div class="container">
+        <table class="ranking-table">
+            <thead>
+                <tr>
+                    <th>Professor</th>
+                    <th>Rank</th>
+                    <th>Elo</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% professors.forEach((professor, index) => { %>
+                <tr>
+                    <td class="professor-info">
+                        <img src="/<%= professor.photo_path %>" class="small-professor-image" alt="Professor Image">
+                        <span><%= professor.name %></span>
+                    </td>
+                    <td><%= index + 1 %></td>
+                    <td><%= professor.elo %></td>
+                    <td><%= professor.votes %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
